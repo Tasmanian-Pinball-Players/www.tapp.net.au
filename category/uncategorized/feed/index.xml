@@ -8,11 +8,11 @@
 	>
 
 <channel>
-	<title>Tasmanian Association of Pinball Players</title>
-	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
+	<title>Uncategorized &#8211; Tasmanian Association of Pinball Players</title>
+	<atom:link href="/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Because it always drains</description>
-	<lastBuildDate>Sat, 27 Jan 2024 10:03:58 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 05 Dec 2023 02:04:18 +0000</lastBuildDate>
 	<language>en-AU</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,26 +20,6 @@
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.4.2</generator>
 	<item>
-		<title>Announcing TAPP</title>
-		<link>/announcing-tapp/</link>
-					<comments>/announcing-tapp/#respond</comments>
-		
-		<dc:creator><![CDATA[josh]]></dc:creator>
-		<pubDate>Sat, 27 Jan 2024 10:03:10 +0000</pubDate>
-				<category><![CDATA[Uncategorised]]></category>
-		<guid isPermaLink="false">/?p=58</guid>
-
-					<description><![CDATA[Hello world]]></description>
-										<content:encoded><![CDATA[
-<p>Hello world</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>/announcing-tapp/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
 		<title>Hello world!</title>
 		<link>/hello-world/</link>
 					<comments>/hello-world/#comments</comments>
