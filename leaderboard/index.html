@@ -127,10 +127,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 			width: auto;
 			z-index: 100000;
 		}</style>
-<script src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
-<script src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
-<script id="ai-js-js-extra">var MyAjax = {"ajaxurl":"\/wp-admin\/admin-ajax.php","security":"f8f4ae18cc"};</script>
-<script src="/wp-content/plugins/advanced-iframe/js/ai.min.js?ver=1" id="ai-js-js"></script>
 <link rel="https://api.w.org/" href="/wp-json/">
 <link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/116">
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
@@ -241,24 +237,534 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 <p>Our leaderboard is powered by the points system of the International Flipper Pinball Association (IFPA). As players participate in IFPA-endorsed events within the state, they earn IFPA points based on their performance. These points determine their ranking on our state leaderboard.</p>
 
 
-<h2 class="wp-block-heading" id="the-leaderboard-to-be-launched">The Leaderboard [To Be Launched]</h2>
+<h2 class="wp-block-heading" id="the-leaderboard-work-in-progress">The Leaderboard [work in progress]</h2>
 
-
-<p></p>
-
-
-<style type="text/css">.errordiv { padding:10px; margin:10px; border: 1px solid #555555;color: #000000;background-color: #f8f8f8; width:500px; }#advanced_iframe {visibility:visible;opacity:1;vertical-align:top;}.ai-info-bottom-iframe { position: fixed; z-index: 10000; bottom:0; left: 0; margin: 0px; text-align: center; width: 100%; background-color: #ff9999; padding-left: 5px;padding-bottom: 5px; border-top: 1px solid #aaa } a.ai-bold {font-weight: bold;}#ai-layer-div-advanced_iframe p {height:100%;margin:0;padding:0}</style>
-<script type="text/javascript">var ai_iframe_width_advanced_iframe = 0;var ai_iframe_height_advanced_iframe = 0;function aiReceiveMessageadvanced_iframe(event) {  aiProcessMessage(event,"advanced_iframe", "true");}if (window.addEventListener) {  window.addEventListener("message", aiReceiveMessageadvanced_iframe);} else if (el.attachEvent)  {  el.attachEvent("message", aiReceiveMessageadvanced_iframe);}var aiIsIe8=false;var aiOnloadScrollTop="true";var aiShowDebug=false;
-		if (typeof aiReadyCallbacks === 'undefined') {
-			var aiReadyCallbacks = [];  
-		} else if (!(aiReadyCallbacks instanceof Array)) {
-			var aiReadyCallbacks = [];
-		}    function aiShowIframeId(id_iframe) { jQuery("#"+id_iframe).css("visibility", "visible");    }    function aiResizeIframeHeight(height) { aiResizeIframeHeight(height,advanced_iframe); }    function aiResizeIframeHeightId(height,width,id) {aiResizeIframeHeightById(id,height);}</script><p class="ai-surrounding-p"><iframe id="advanced_iframe" name="advanced_iframe" src="https://www.ifpapinball.com/series/acs/2024/standingsView.php?l=Tas" width="100%" height="600" frameborder="0" allowtransparency="true" loading="lazy" style=";width:100%;height:600px;"></iframe></p>
-<script type="text/javascript">var ifrm_advanced_iframe = document.getElementById("advanced_iframe");var hiddenTabsDoneadvanced_iframe = false;
-function resizeCallbackadvanced_iframe() {}</script><script type="text/javascript"></script>
-
-
-<p></p>
+<div class="standings-tabs">
+<ul class="tabs"><li class="tab active" data-tab="tab-2024">2024</li></ul>
+<div class="tab-content active" id="tab-2024"><table>
+<thead><tr>
+<th>Rank</th>
+<th>Player Name</th>
+<th>Event Count</th>
+<th>Win Count</th>
+<th>WPPR Points</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Joshua Hesketh</td>
+<td>14</td>
+<td>7</td>
+<td>18.11</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Simon Voigt</td>
+<td>17</td>
+<td>4</td>
+<td>12.50</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Adrian (ACE) Evans</td>
+<td>18</td>
+<td>1</td>
+<td>6.67</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Solomon Smith (AUS)</td>
+<td>14</td>
+<td>1</td>
+<td>5.89</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Andrew Krasnicki</td>
+<td>12</td>
+<td>2</td>
+<td>3.97</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Wes Keys</td>
+<td>12</td>
+<td>0</td>
+<td>3.61</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Kev Mills</td>
+<td>15</td>
+<td>0</td>
+<td>2.54</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Tom Fonda</td>
+<td>7</td>
+<td>0</td>
+<td>2.13</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Frank Holtznagel</td>
+<td>5</td>
+<td>1</td>
+<td>1.73</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Brett Cooke</td>
+<td>14</td>
+<td>0</td>
+<td>1.01</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Royal Murray</td>
+<td>8</td>
+<td>0</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Lily McShane</td>
+<td>9</td>
+<td>0</td>
+<td>0.94</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Lee Davey</td>
+<td>11</td>
+<td>0</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Esther Ahronheim</td>
+<td>1</td>
+<td>1</td>
+<td>0.58</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Mark Brown (TAS)</td>
+<td>6</td>
+<td>0</td>
+<td>0.53</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Neil Chalton</td>
+<td>5</td>
+<td>0</td>
+<td>0.47</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Grant Burke</td>
+<td>4</td>
+<td>0</td>
+<td>0.47</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Ben Lambert</td>
+<td>9</td>
+<td>0</td>
+<td>0.41</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Bennet McComish</td>
+<td>1</td>
+<td>0</td>
+<td>0.41</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Bec Eaton</td>
+<td>6</td>
+<td>0</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Adam Carroll </td>
+<td>2</td>
+<td>0</td>
+<td>0.32</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Rick Hill</td>
+<td>1</td>
+<td>0</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Daniel Mills</td>
+<td>5</td>
+<td>0</td>
+<td>0.23</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Cameron Fenton </td>
+<td>3</td>
+<td>0</td>
+<td>0.23</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Ben Cleary</td>
+<td>2</td>
+<td>0</td>
+<td>0.22</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Justin Kingston</td>
+<td>5</td>
+<td>0</td>
+<td>0.20</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Ben Williams (TAS)</td>
+<td>3</td>
+<td>0</td>
+<td>0.19</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Eden Moore</td>
+<td>1</td>
+<td>1</td>
+<td>0.17</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Ed Kransnicki</td>
+<td>3</td>
+<td>0</td>
+<td>0.16</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Pinball Jesus</td>
+<td>6</td>
+<td>0</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Alan Atkins</td>
+<td>2</td>
+<td>0</td>
+<td>0.14</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Anthony Allen</td>
+<td>4</td>
+<td>0</td>
+<td>0.13</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Simon Spencer</td>
+<td>3</td>
+<td>0</td>
+<td>0.12</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Brett Poulson </td>
+<td>1</td>
+<td>0</td>
+<td>0.11</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Anya Voigt</td>
+<td>3</td>
+<td>0</td>
+<td>0.11</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Luke Davey</td>
+<td>1</td>
+<td>0</td>
+<td>0.10</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Michael Saward</td>
+<td>2</td>
+<td>0</td>
+<td>0.10</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Ben Hendriks </td>
+<td>1</td>
+<td>0</td>
+<td>0.09</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Andrew Cathcart</td>
+<td>2</td>
+<td>0</td>
+<td>0.09</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Andrew Durgan</td>
+<td>2</td>
+<td>0</td>
+<td>0.09</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Al Cutler</td>
+<td>3</td>
+<td>0</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Christan Mason </td>
+<td>1</td>
+<td>0</td>
+<td>0.07</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Grant Chilcott</td>
+<td>2</td>
+<td>0</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Andrew A1A Alexakis</td>
+<td>1</td>
+<td>0</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Jacqui Lampe </td>
+<td>1</td>
+<td>0</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Steve Moon</td>
+<td>1</td>
+<td>0</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Julian Gostelow</td>
+<td>1</td>
+<td>0</td>
+<td>0.04</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Liam Gray</td>
+<td>1</td>
+<td>0</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Jasper Maxwell O&#8217;Brien</td>
+<td>1</td>
+<td>0</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Jamie Tunks</td>
+<td>1</td>
+<td>0</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Sherwin Newbown</td>
+<td>1</td>
+<td>0</td>
+<td>0.02</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Kyle Frame </td>
+<td>1</td>
+<td>0</td>
+<td>0.02</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Tony Morgan</td>
+<td>2</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Alannah Slee</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Brenda Saward</td>
+<td>2</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Blake Coole</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Sam Winchester</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Jack Berry</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>59</td>
+<td>Sarah Hesketh</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Nutsanun Mekmontha</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>61</td>
+<td>Ross Phillips</td>
+<td>1</td>
+<td>0</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>62</td>
+<td>Big John</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>63</td>
+<td>Nic Backhouse</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Stevo Talbot</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>65</td>
+<td>Natalie Mains</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>66</td>
+<td>Sam Robertson</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>67</td>
+<td>Gene Reis</td>
+<td>1</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        // Handle tabs
+        var tabs = document.querySelectorAll(".tabs .tab");
+        var contents = document.querySelectorAll(".tab-content");
+        tabs.forEach(function(tab) {
+            tab.addEventListener("click", function() {
+                var tabId = this.getAttribute("data-tab");
+                // Remove active class from all tabs
+                tabs.forEach(function(t) { t.classList.remove("active"); });
+                // Hide all content
+                contents.forEach(function(c) { c.classList.remove("active"); });
+                // Add active class to current tab
+                this.classList.add("active");
+                // Show current content
+                document.getElementById(tabId).classList.add("active");
+            });
+        });
+    
+    });</script>
+    
+    <style>/* Additional styles for tabs */
+    .standings-tabs .tabs {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    .standings-tabs .tab {
+        padding: 10px 20px;
+        background: #f1f1f1;
+        margin-right: 5px;
+    }
+    .standings-tabs .tab.active {
+        background: #ccc;
+    }
+    .standings-tabs .tab-content {
+        display: none;
+    }
+    .standings-tabs .tab-content.active {
+        display: block;
+    }</style>
+    
 
 
 
@@ -366,7 +872,7 @@ function resizeCallbackadvanced_iframe() {}</script><script type="text/javascrip
 </div>
 </footer>
 </div>
-<script type="text/javascript">if(window.aiModifyParent) {aiModifyParent();}</script><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-duotone-1"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncr><fefuncg type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncg><fefuncb type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><script id="wp-block-template-skip-link-js-after">( function() {
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-duotone-1"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncr><fefuncg type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncg><fefuncb type="table" tablevalues="0.15294117647059 0.97647058823529"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,
 			skipLinkTargetID,
