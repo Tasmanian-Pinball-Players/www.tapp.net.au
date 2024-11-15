@@ -19,6 +19,14 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2024/03/cropped-TAPP-Logo-32x32.png</url>
+	<title>TAPP &#8211; Tasmanian Association of Pinball Players</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
 	<item>
 		<title>Announcing TAPP</title>
 		<link>/announcing-tapp/</link>
