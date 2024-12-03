@@ -3702,9 +3702,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 </div>
 
 
-
-<div id="gutenberg-toc-container"></div>
-
 <script>document.addEventListener("DOMContentLoaded", function () {
   // Check viewport width to determine if TOC should be expanded or collapsed by default
   const isWideScreen = window.innerWidth >= 1900;
@@ -3778,26 +3775,37 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     const tocList = document.createElement("ul");
     headers.forEach((header, index) => {
       let anchorId;
+      const headerText = header.textContent.trim();
+      console.log(`Header HTML: ${header.outerHTML}`); // Debugging output for the full HTML of the header
+      if (!headerText) {
+        console.warn(`Header ${index} is empty, skipping.`); // Debugging output for empty headers
+        return;
+      }
+      console.log(`Processing header: ${headerText}`); // Debugging output
       if (header.tagName === "H2") {
-        const headerText = header.innerText;
-        const dateMatch = headerText.match(/\w+, (\d{1,2})\w* (\w+) (\d{4})/);
+        const dateMatch = headerText.match(/(?:\w+, )?(\d{1,2})(?:st|nd|rd|th)? (\w+) (\d{4})/);
         if (dateMatch) {
           const day = dateMatch[1].padStart(2, '0');
           const month = new Date(`${dateMatch[2]} 1, 2000`).getMonth() + 1;
           const year = dateMatch[3];
           anchorId = `d-${year}-${String(month).padStart(2, '0')}-${day}`;
+          console.log(`Generated anchor ID from date: ${anchorId}`); // Debugging output
         } else {
           anchorId = `heading-${index}`;
+          console.log(`No date match, using default anchor ID: ${anchorId}`); // Debugging output
         }
       } else {
         anchorId = `heading-${index}`;
+        console.log(`Non-H2 header, using default anchor ID: ${anchorId}`); // Debugging output
       }
       // Find the closest wp-block-columns container and set the id to it
       const parentColumn = header.closest('.wp-block-columns');
       if (parentColumn) {
         parentColumn.id = anchorId;
+        console.log(`Set ID on parent column: ${anchorId}`); // Debugging output
       } else {
         header.id = anchorId;
+        console.log(`Set ID on header: ${anchorId}`); // Debugging output
       }
 
       // Create a list item with a link to the header
@@ -3806,15 +3814,20 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
       tocItem.style.textAlign = "right";
       const tocLink = document.createElement("a");
       tocLink.href = "#" + anchorId;
-      tocLink.innerText = header.innerText;
+      tocLink.innerText = headerText;
       tocLink.style.color = "rgb(249, 249, 249)";
       tocLink.style.display = "block";
       tocLink.style.width = "100%";
       tocLink.onclick = function (e) {
         e.preventDefault();
         const targetElement = document.querySelector(`#${anchorId}`);
-        targetElement.scrollIntoView({ behavior: "smooth" });
-        history.pushState(null, '', `#${anchorId}`); // Update the URL to include the anchor ID
+        if (targetElement) {
+          console.log(`Scrolling to target element with ID: ${anchorId}`); // Debugging output
+          targetElement.scrollIntoView({ behavior: "smooth" });
+          history.pushState(null, '', `#${anchorId}`); // Update the URL to include the anchor ID
+        } else {
+          console.log(`Target element with ID: ${anchorId} not found`); // Debugging output
+        }
       };
       tocItem.appendChild(tocLink);
       tocList.appendChild(tocItem);
@@ -3823,7 +3836,8 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   }
 
   // Append the TOC container to the target Gutenberg div
-  document.getElementById('gutenberg-toc-container').appendChild(tocContainer);
+  const targetDiv = document.getElementById('gutenberg-toc-container') || document.body;
+  targetDiv.appendChild(tocContainer);
 
   // Highlight current header when scrolling
   document.addEventListener("scroll", function () {
@@ -3856,32 +3870,27 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
       }
     }
   });
-});
 
-// CSS to make TOC visually appealing
-const style = document.createElement('style');
-style.innerHTML = `
-  #toc-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  #toc-container ul li {
-    margin-bottom: 5px;
-  }
-  #toc-container ul li a {
-    text-decoration: none;
-    color: rgb(249, 249, 249);
-  }
-  #toc-container ul li a:hover {
-    text-decoration: underline;
-  }
-`;
-document.head.appendChild(style);</script>
-
-
-
-
-<p></p>
+  // CSS to make TOC visually appealing
+  const style = document.createElement('style');
+  style.innerHTML = `
+    #toc-container ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    #toc-container ul li {
+      margin-bottom: 5px;
+    }
+    #toc-container ul li a {
+      text-decoration: none;
+      color: rgb(249, 249, 249);
+    }
+    #toc-container ul li a:hover {
+      text-decoration: underline;
+    }
+  `;
+  document.head.appendChild(style);
+});</script>
 </div></main>
 
 
