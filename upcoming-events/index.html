@@ -448,7 +448,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   const tocContainer = document.createElement("div");
   tocContainer.id = "toc-container";
   tocContainer.style.position = "fixed";
-  tocContainer.style.right = expandedByDefault ? "0px" : "-310px";
+  tocContainer.style.right = expandedByDefault ? "0px" : "-315px";
   tocContainer.style.top = "50%";
   tocContainer.style.transform = "translateY(-50%)";
   tocContainer.style.width = "300px";
@@ -467,7 +467,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   const toggleButton = document.createElement("div");
   toggleButton.innerText = "Table of Contents";
   toggleButton.style.position = "fixed";
-  toggleButton.style.right = expandedByDefault ? "260px" : "-50px";
+  toggleButton.style.right = expandedByDefault ? "240px" : "-75px";
   toggleButton.style.top = "50%";
   toggleButton.style.transform = "translateY(-50%) rotate(-90deg)";
   toggleButton.style.backgroundColor = "#555";
@@ -488,9 +488,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   toggleButton.appendChild(arrow);
 
   toggleButton.onclick = function () {
-    const isCollapsed = tocContainer.style.right === "-310px";
-    tocContainer.style.right = isCollapsed ? "0px" : "-310px";
-    toggleButton.style.right = isCollapsed ? "260px" : "-50px";
+    const isCollapsed = tocContainer.style.right === "-315px";
+    tocContainer.style.right = isCollapsed ? "0px" : "-315px";
+    toggleButton.style.right = isCollapsed ? "240px" : "-75px";
     arrow.innerText = isCollapsed ? " ▼" : " ▲"; // Update arrow to indicate the correct direction
   };
   document.body.appendChild(toggleButton);
