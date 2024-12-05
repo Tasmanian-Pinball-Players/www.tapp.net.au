@@ -566,7 +566,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 
 
-<h3 class="wp-block-heading">Agreement</h3>
+<h2 class="wp-block-heading">Agreement</h2>
 
 
 
@@ -574,11 +574,202 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 
 
-<h3 class="wp-block-heading">Contact for Questions or Feedback</h3>
+<h2 class="wp-block-heading">Contact for Questions or Feedback</h2>
 
 
 
 <p>If you have any questions about this Code or suggestions for improvement, please <a href="/contact/" data-type="page" data-id="98">contact TAPP organisers</a>. We welcome your feedback!</p>
+
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+  // Check viewport width to determine if TOC should be expanded or collapsed by default
+  const isWideScreen = window.innerWidth >= 1900;
+  const expandedByDefault = isWideScreen; // Set expanded if the viewport is wider than 1900px
+
+  // Create the Table of Contents container
+  const tocContainer = document.createElement("div");
+  tocContainer.id = "toc-container";
+  tocContainer.style.position = "fixed";
+  tocContainer.style.right = expandedByDefault ? "0px" : "-315px";
+  tocContainer.style.top = "50%";
+  tocContainer.style.transform = "translateY(-50%)";
+  tocContainer.style.width = "300px";
+  tocContainer.style.padding = "10px";
+  tocContainer.style.backgroundColor = "#333";
+  tocContainer.style.border = "1px solid #555";
+  tocContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
+  tocContainer.style.color = "#fff";
+  tocContainer.style.borderRadius = "8px";
+  tocContainer.style.transition = "right 0.5s ease";
+  tocContainer.style.maxHeight = "80vh";
+  tocContainer.style.overflowY = "auto";
+  tocContainer.style.zIndex = "1000";
+
+  // Create the collapsible toggle button
+  const toggleButton = document.createElement("div");
+  toggleButton.innerText = "Table of Contents";
+  toggleButton.style.position = "fixed";
+  toggleButton.style.right = expandedByDefault ? "240px" : "-75px";
+  toggleButton.style.top = "50%";
+  toggleButton.style.transform = "translateY(-50%) rotate(-90deg)";
+  toggleButton.style.backgroundColor = "#555";
+  toggleButton.style.color = "#fff";
+  toggleButton.style.padding = "5px 10px";
+  toggleButton.style.cursor = "pointer";
+  toggleButton.style.borderRadius = "4px";
+  toggleButton.style.zIndex = "1001";
+  toggleButton.style.whiteSpace = "nowrap";
+  toggleButton.style.height = "auto";
+  toggleButton.style.width = "fit-content";
+  toggleButton.style.textAlign = "center";
+  toggleButton.style.transition = "right 0.5s ease";
+
+  // Replace the arrows with up/down arrows to indicate the correct direction
+  const arrow = document.createElement("span");
+  arrow.innerText = expandedByDefault ? " ▼" : " ▲";
+  toggleButton.appendChild(arrow);
+
+  toggleButton.onclick = function () {
+    const isCollapsed = tocContainer.style.right === "-315px";
+    tocContainer.style.right = isCollapsed ? "0px" : "-315px";
+    toggleButton.style.right = isCollapsed ? "240px" : "-75px";
+    arrow.innerText = isCollapsed ? " ▼" : " ▲"; // Update arrow to indicate the correct direction
+  };
+  document.body.appendChild(toggleButton);
+
+  // Create the TOC content container
+  const tocContent = document.createElement("div");
+  tocContent.className = "toc-content";
+  tocContent.style.display = "block";
+  tocContainer.appendChild(tocContent);
+
+  // Option to only include H2 headers
+  const includeH1 = false; // Set this to true if you want to include H1 headers
+
+  // Collect headers (H1 and H2 if includeH1 is true, otherwise only H2)
+  const headers = document.querySelectorAll(includeH1 ? "main h1, main h2" : "main h2");
+  if (headers.length === 0) {
+    tocContent.innerText = "No headers found.";
+  } else {
+    const tocList = document.createElement("ul");
+    headers.forEach((header, index) => {
+      let anchorId;
+      const headerText = header.textContent.trim();
+      console.log(`Header HTML: ${header.outerHTML}`); // Debugging output for the full HTML of the header
+      if (!headerText) {
+        console.warn(`Header ${index} is empty, skipping.`); // Debugging output for empty headers
+        return;
+      }
+      console.log(`Processing header: ${headerText}`); // Debugging output
+      if (header.tagName === "H2") {
+        const dateMatch = headerText.match(/(?:\w+, )?(\d{1,2})(?:st|nd|rd|th)? (\w+) (\d{4})/);
+        if (dateMatch) {
+          const day = dateMatch[1].padStart(2, '0');
+          const month = new Date(`${dateMatch[2]} 1, 2000`).getMonth() + 1;
+          const year = dateMatch[3];
+          anchorId = `d-${year}-${String(month).padStart(2, '0')}-${day}`;
+          console.log(`Generated anchor ID from date: ${anchorId}`); // Debugging output
+        } else {
+          anchorId = `heading-${index}`;
+          console.log(`No date match, using default anchor ID: ${anchorId}`); // Debugging output
+        }
+      } else {
+        anchorId = `heading-${index}`;
+        console.log(`Non-H2 header, using default anchor ID: ${anchorId}`); // Debugging output
+      }
+      // Find the closest wp-block-columns container and set the id to it
+      const parentColumn = header.closest('.wp-block-columns');
+      if (parentColumn) {
+        parentColumn.id = anchorId;
+        console.log(`Set ID on parent column: ${anchorId}`); // Debugging output
+      } else {
+        header.id = anchorId;
+        console.log(`Set ID on header: ${anchorId}`); // Debugging output
+      }
+
+      // Create a list item with a link to the header
+      const tocItem = document.createElement("li");
+      tocItem.style.marginLeft = header.tagName === "H2" ? "20px" : "0px";
+      tocItem.style.textAlign = "right";
+      const tocLink = document.createElement("a");
+      tocLink.href = "#" + anchorId;
+      tocLink.innerText = headerText;
+      tocLink.style.color = "rgb(249, 249, 249)";
+      tocLink.style.display = "block";
+      tocLink.style.width = "100%";
+      tocLink.onclick = function (e) {
+        e.preventDefault();
+        const targetElement = document.querySelector(`#${anchorId}`);
+        if (targetElement) {
+          console.log(`Scrolling to target element with ID: ${anchorId}`); // Debugging output
+          targetElement.scrollIntoView({ behavior: "smooth" });
+          history.pushState(null, '', `#${anchorId}`); // Update the URL to include the anchor ID
+        } else {
+          console.log(`Target element with ID: ${anchorId} not found`); // Debugging output
+        }
+      };
+      tocItem.appendChild(tocLink);
+      tocList.appendChild(tocItem);
+    });
+    tocContent.appendChild(tocList);
+  }
+
+  // Append the TOC container to the target Gutenberg div
+  const targetDiv = document.getElementById('gutenberg-toc-container') || document.body;
+  targetDiv.appendChild(tocContainer);
+
+  // Highlight current header when scrolling
+  document.addEventListener("scroll", function () {
+    let currentHeader = null;
+    headers.forEach((header) => {
+      const rect = header.getBoundingClientRect();
+      if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+        if (!currentHeader || rect.top < currentHeader.getBoundingClientRect().top) {
+          currentHeader = header;
+        }
+      }
+    });
+
+    if (currentHeader) {
+      const parentColumn = currentHeader.closest('.wp-block-columns');
+      const currentId = parentColumn ? parentColumn.id : currentHeader.id;
+      const activeLink = document.querySelector(`a[href="#${currentId}"]`);
+
+      // Remove highlighting from all links
+      document.querySelectorAll('#toc-container a').forEach(link => {
+        link.style.backgroundColor = "transparent";
+        link.style.padding = "0";
+      });
+
+      // Highlight the active link
+      if (activeLink) {
+        activeLink.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+        activeLink.style.borderRadius = "4px";
+        activeLink.style.padding = "4px";
+      }
+    }
+  });
+
+  // CSS to make TOC visually appealing
+  const style = document.createElement('style');
+  style.innerHTML = `
+    #toc-container ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    #toc-container ul li {
+      margin-bottom: 5px;
+    }
+    #toc-container ul li a {
+      text-decoration: none;
+      color: rgb(249, 249, 249);
+    }
+    #toc-container ul li a:hover {
+      text-decoration: underline;
+    }
+  `;
+  document.head.appendChild(style);
+});</script>
 </div>
 </div>
 </div>
