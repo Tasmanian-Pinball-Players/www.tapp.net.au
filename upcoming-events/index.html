@@ -440,9 +440,15 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 
 <script>document.addEventListener("DOMContentLoaded", function () {
+  // Configuration for heading levels
+  const config = {
+    minHeadingLevel: 2, // Minimum heading level to include (e.g., H2)
+    maxHeadingLevel: 3 // Maximum heading level to include (e.g., H6)
+  };
+
   // Check viewport width to determine if TOC should be expanded or collapsed by default
   const isWideScreen = window.innerWidth >= 1900;
-  const expandedByDefault = isWideScreen; // Set expanded if the viewport is wider than 1900px
+  const expandedByDefault = isWideScreen;
 
   // Create the Table of Contents container
   const tocContainer = document.createElement("div");
@@ -482,7 +488,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   toggleButton.style.textAlign = "center";
   toggleButton.style.transition = "right 0.5s ease";
 
-  // Replace the arrows with up/down arrows to indicate the correct direction
   const arrow = document.createElement("span");
   arrow.innerText = expandedByDefault ? " ▼" : " ▲";
   toggleButton.appendChild(arrow);
@@ -491,7 +496,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     const isCollapsed = tocContainer.style.right === "-315px";
     tocContainer.style.right = isCollapsed ? "0px" : "-315px";
     toggleButton.style.right = isCollapsed ? "240px" : "-75px";
-    arrow.innerText = isCollapsed ? " ▼" : " ▲"; // Update arrow to indicate the correct direction
+    arrow.innerText = isCollapsed ? " ▼" : " ▲";
   };
   document.body.appendChild(toggleButton);
 
@@ -501,71 +506,57 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   tocContent.style.display = "block";
   tocContainer.appendChild(tocContent);
 
-  // Option to only include H2 headers
-  const includeH1 = false; // Set this to true if you want to include H1 headers
+  // Collect headers based on configuration
+  const selectors = Array.from({ length: config.maxHeadingLevel - config.minHeadingLevel + 1 }, (_, i) => `main h${i + config.minHeadingLevel}`)
+    .join(", ");
 
-  // Collect headers (H1 and H2 if includeH1 is true, otherwise only H2)
-  const headers = document.querySelectorAll(includeH1 ? "main h1, main h2" : "main h2");
+  const headers = document.querySelectorAll(selectors);
   if (headers.length === 0) {
     tocContent.innerText = "No headers found.";
   } else {
     const tocList = document.createElement("ul");
+    tocList.style.textAlign = "right"; // Right-align the ToC
+
+    // Determine the smallest heading level included
+    const headingLevels = Array.from(headers).map(header => parseInt(header.tagName[1], 10));
+    const minHeadingLevel = Math.min(...headingLevels);
+
     headers.forEach((header, index) => {
+      const level = parseInt(header.tagName[1], 10);
+      if (level < config.minHeadingLevel || level > config.maxHeadingLevel) return;
+
       let anchorId;
       const headerText = header.textContent.trim();
-      console.log(`Header HTML: ${header.outerHTML}`); // Debugging output for the full HTML of the header
-      if (!headerText) {
-        console.warn(`Header ${index} is empty, skipping.`); // Debugging output for empty headers
-        return;
-      }
-      console.log(`Processing header: ${headerText}`); // Debugging output
-      if (header.tagName === "H2") {
-        const dateMatch = headerText.match(/(?:\w+, )?(\d{1,2})(?:st|nd|rd|th)? (\w+) (\d{4})/);
-        if (dateMatch) {
-          const day = dateMatch[1].padStart(2, '0');
-          const month = new Date(`${dateMatch[2]} 1, 2000`).getMonth() + 1;
-          const year = dateMatch[3];
-          anchorId = `d-${year}-${String(month).padStart(2, '0')}-${day}`;
-          console.log(`Generated anchor ID from date: ${anchorId}`); // Debugging output
-        } else {
-          anchorId = `heading-${index}`;
-          console.log(`No date match, using default anchor ID: ${anchorId}`); // Debugging output
-        }
+      const dateMatch = headerText.match(/(?:\w+, )?(\d{1,2})(?:st|nd|rd|th)? (\w+) (\d{4})/);
+      if (dateMatch) {
+        const day = dateMatch[1].padStart(2, '0');
+        const month = new Date(`${dateMatch[2]} 1, 2000`).getMonth() + 1;
+        const year = dateMatch[3];
+        anchorId = `d-${year}-${String(month).padStart(2, '0')}-${day}`;
       } else {
-        anchorId = `heading-${index}`;
-        console.log(`Non-H2 header, using default anchor ID: ${anchorId}`); // Debugging output
+        anchorId = header.id || `heading-${index}`;
       }
-      // Find the closest wp-block-columns container and set the id to it
-      const parentColumn = header.closest('.wp-block-columns');
-      if (parentColumn) {
-        parentColumn.id = anchorId;
-        console.log(`Set ID on parent column: ${anchorId}`); // Debugging output
-      } else {
-        header.id = anchorId;
-        console.log(`Set ID on header: ${anchorId}`); // Debugging output
-      }
+      header.id = anchorId;
 
-      // Create a list item with a link to the header
+      // Create a list item with indentation based on the heading level relative to the smallest level present
       const tocItem = document.createElement("li");
-      tocItem.style.marginLeft = header.tagName === "H2" ? "20px" : "0px";
-      tocItem.style.textAlign = "right";
+      tocItem.style.marginRight = `${(level - minHeadingLevel) * 20}px`; // Indentation relative to the smallest level present
+
       const tocLink = document.createElement("a");
-      tocLink.href = "#" + anchorId;
+      tocLink.href = `#${anchorId}`;
       tocLink.innerText = headerText;
       tocLink.style.color = "rgb(249, 249, 249)";
+      tocLink.style.textDecoration = "none";
       tocLink.style.display = "block";
-      tocLink.style.width = "100%";
       tocLink.onclick = function (e) {
         e.preventDefault();
         const targetElement = document.querySelector(`#${anchorId}`);
         if (targetElement) {
-          console.log(`Scrolling to target element with ID: ${anchorId}`); // Debugging output
           targetElement.scrollIntoView({ behavior: "smooth" });
-          history.pushState(null, '', `#${anchorId}`); // Update the URL to include the anchor ID
-        } else {
-          console.log(`Target element with ID: ${anchorId} not found`); // Debugging output
+          history.pushState(null, "", `#${anchorId}`);
         }
       };
+
       tocItem.appendChild(tocLink);
       tocList.appendChild(tocItem);
     });
@@ -573,7 +564,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
   }
 
   // Append the TOC container to the target Gutenberg div
-  const targetDiv = document.getElementById('gutenberg-toc-container') || document.body;
+  const targetDiv = document.getElementById("gutenberg-toc-container") || document.body;
   targetDiv.appendChild(tocContainer);
 
   // Highlight current header when scrolling
@@ -589,12 +580,11 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     });
 
     if (currentHeader) {
-      const parentColumn = currentHeader.closest('.wp-block-columns');
-      const currentId = parentColumn ? parentColumn.id : currentHeader.id;
+      const currentId = currentHeader.id;
       const activeLink = document.querySelector(`a[href="#${currentId}"]`);
 
       // Remove highlighting from all links
-      document.querySelectorAll('#toc-container a').forEach(link => {
+      document.querySelectorAll("#toc-container a").forEach(link => {
         link.style.backgroundColor = "transparent";
         link.style.padding = "0";
       });
@@ -608,8 +598,8 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     }
   });
 
-  // CSS to make TOC visually appealing
-  const style = document.createElement('style');
+  // Add CSS for TOC styling
+  const style = document.createElement("style");
   style.innerHTML = `
     #toc-container ul {
       list-style-type: none;
@@ -617,10 +607,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     }
     #toc-container ul li {
       margin-bottom: 5px;
-    }
-    #toc-container ul li a {
-      text-decoration: none;
-      color: rgb(249, 249, 249);
     }
     #toc-container ul li a:hover {
       text-decoration: underline;
